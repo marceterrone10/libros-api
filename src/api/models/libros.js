@@ -10,4 +10,4 @@ const schema = new mongoose.Schema({
     precio: { type: Number, required: true }
 });
 
-export default mongoose.model("Libro", schema);
+export default mongoose.model("Libro", schema, "libros"); //exportamos el modelo Libro y le decimos que use la colección "libros"

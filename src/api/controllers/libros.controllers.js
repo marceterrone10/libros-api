@@ -47,7 +47,5 @@ export async function crearLibro(req, res){
             details: error
         });
     };
-
-
-}
+};
 
