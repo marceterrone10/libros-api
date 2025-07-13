@@ -4,6 +4,7 @@ export async function obtenerLibros(req, res){
     try {
         const libros = await Libro.find(); // consulta mongoDB para obtener todos los libros
         res.json(libros); // devuelve los libros en formato JSON
+
     } catch (error) {
         console.log("Error al obtener los libros:", error);
         res.status(500).json({
@@ -31,4 +32,22 @@ export async function obtenerLibroPorId(req, res){
         });
     };
 };
+
+export async function crearLibro(req, res){
+    const nuevoLibro = new Libro(req.body);
+
+    try {
+        const libroGuardado = await nuevoLibro.save(); // guardamos
+        res.status(201).json(libroGuardado); // devuelve el libro guardado en formato JSON
+
+    } catch ( error ) {
+        console.log("Error al crear el libro:", error);
+        res.status(500).json({
+            error: "Error al crear el libro",
+            details: error
+        });
+    };
+
+
+}
 

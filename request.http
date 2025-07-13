@@ -1,4 +1,13 @@
-
-
-GET http://localhost:3000/api/libros/6873efa7139dd21d8470bf19
+GET http://localhost:3000/api/libros
+Content-Type: application/json
 Accept: application/json
+
+{
+  "titulo": "El nuevo libro",
+  "autor": "Marce",
+  "stock": 10,
+  "editorial": "Mi Editorial",
+  "precio": 2500,
+  "isbn": "9876543210",
+  "generos": ["Ficción", "Aventura"]
+}
