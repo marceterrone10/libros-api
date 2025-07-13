@@ -1,0 +1,4 @@
+
+
+GET http://localhost:3000/api/libros/6873efa7139dd21d8470bf19
+Accept: application/json
