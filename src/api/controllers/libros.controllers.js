@@ -37,7 +37,8 @@ export async function crearLibro(req, res){
     const nuevoLibro = new Libro(req.body);
 
     try {
-        const libroGuardado = await nuevoLibro.save(); // guardamos
+        const libroGuardado = await nuevoLibro.save(); // con .save() guardamos el libro en la base de datos
+        console.log("Libro creado:", libroGuardado);
         res.status(201).json(libroGuardado); // devuelve el libro guardado en formato JSON
 
     } catch ( error ) {

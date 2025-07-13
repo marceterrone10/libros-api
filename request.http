@@ -3,11 +3,11 @@ Content-Type: application/json
 Accept: application/json
 
 {
-  "titulo": "El nuevo libro",
-  "autor": "Marce",
-  "stock": 10,
-  "editorial": "Mi Editorial",
-  "precio": 2500,
-  "isbn": "9876543210",
-  "generos": ["Ficción", "Aventura"]
+  "titulo": "La Sombra del Viento",
+  "autor": "Carlos Ruiz Zafón",
+  "stock": 12,
+  "editorial": "Planeta",
+  "precio": 5900,
+  "isbn": "9788408172173",
+  "generos": ["Misterio", "Drama", "Ficción histórica"]
 }
