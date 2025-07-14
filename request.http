@@ -3,11 +3,11 @@ Content-Type: application/json
 Accept: application/json
 
 {
-  "titulo": "La Sombra del Viento",
-  "autor": "Carlos Ruiz Zafón",
-  "stock": 12,
-  "editorial": "Planeta",
+  "titulo": "El Tunel",
+  "autor": "Ernesto Sabato",
+  "stock": 1,
+  "editorial": "Editorial Sudamericana",
   "precio": 5900,
-  "isbn": "9788408172173",
-  "generos": ["Misterio", "Drama", "Ficción histórica"]
+  "isbn": "9789878000114",
+  "generos": ["Ficción", "Suspenso"]
 }

@@ -50,3 +50,28 @@ export async function crearLibro(req, res){
     };
 };
 
+export async function actualizarLibro(req, res){
+    const { id } = req.params;
+    const actualizaciones = req.body;
+
+    try {
+        const libroActualizado = await Libro.findOneAndUpdate(
+            { _id: id }, // buscamos el libro por ID y ISBN
+            actualizaciones, // actualizamos con los datos del cuerpo de la solicitud
+            { new: true, runValidators: true } // devuelve el libro actualizado y que cumpla con las validaciones del schema
+        );
+        if (!libroActualizado) {
+            return res.status(404).json({
+                error: `Libro con ID ${id} no encontrado`
+            });
+        }
+        return res.json(libroActualizado); // devuelve el libro actualizado en formato JSON
+    } catch ( error ) {
+        console.log(`Error al actualizar el libro con ID ${id} e ISBN ${isbn}:`, error);
+        res.status(500).json({
+            error: `Error al actualizar el libro con ID ${id} e ISBN ${isbn}`,
+            details: error
+        });
+    };
+};
+
