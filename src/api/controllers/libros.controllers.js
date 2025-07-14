@@ -75,3 +75,27 @@ export async function actualizarLibro(req, res){
     };
 };
 
+export async function eliminarLibro(req, res){
+    const { id } = req.params;
+
+    try {  
+        const libroEliminado = await Libro.findOneAndDelete({_id: id}); // buscamos el libro por ID y eliminamos
+        if (!libroEliminado) {
+            return res.status(404).json({
+                error: `Libro con ID ${id} no encontrado`
+            });
+        };
+
+        return res.json({
+            message: `Libro con ID ${id} eliminado correctamente`
+        });
+
+    } catch ( error ) {
+        console.log(`Error al eliminar el libro con ID ${id}:`, error);
+        res.status(500).json({
+            error: `Error al eliminar el libro con ID ${id}`,
+            details: error
+        });
+    };
+};
+
