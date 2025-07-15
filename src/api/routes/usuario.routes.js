@@ -5,13 +5,14 @@ const router = Router();
 
 router.get('/perfil', authMiddleware, (req, res) => {
 
-    const { id, email } = req.user; // importante para obtener el ID y email del usuario autenticado, user viene de authMiddleware cuando decodeamos
+    const { id, email, rol } = req.user; // importante para obtener el ID y email del usuario autenticado, user viene de authMiddleware cuando decodeamos
 
     res.json({
         message: 'Perfil de usuario obtenido correctamente',
         usuario: {
             id,
-            email
+            email,
+            rol
         }
     });
 });
