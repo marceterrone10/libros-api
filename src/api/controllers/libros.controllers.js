@@ -1,4 +1,4 @@
-import Libro from '../models/libros.js';
+import Libro from '../models/libro.model.js';
 
 export async function obtenerLibros(req, res){
     try {
