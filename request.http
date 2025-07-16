@@ -1,13 +1,69 @@
-GET http://localhost:3000/api/libros/
+### 1. Registrar un nuevo usuario
+POST http://localhost:3000/api/auth/register
 Content-Type: application/json
-Accept: application/json
 
 {
-  "titulo": "El Tunel",
-  "autor": "Ernesto Sabato",
-  "stock": 1,
-  "editorial": "Editorial Sudamericana",
-  "precio": 5900,
-  "isbn": "9789878000114",
-  "generos": ["Ficción", "Suspenso"]
+  "email": "administrador@example.com",
+  "password": "123456",
+  "rol": "admin"
 }
+
+### 2. Iniciar sesión y obtener el token
+POST http://localhost:3000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "administrador@example.com",
+  "password": "123456"
+}
+
+### 3. Crear libro SIN token (debería fallar con "Token no proporcionado")
+POST http://localhost:3000/api/libros
+Content-Type: application/json
+
+{
+  "titulo": "Rayuela",
+  "autor": "Julio Cortázar",
+  "stock": 5,
+  "editorial": "Sudamericana",
+  "precio": 8700,
+  "isbn": "9789500705990",
+  "generos": ["Ficción", "Literatura Argentina"]
+}
+
+### 4. Crear libro CON token
+POST http://localhost:3000/api/libros
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NzZjNGM3MTEzYWVkZWM1NGY3MWJiNyIsImVtYWlsIjoiYWRtaW5pc3RyYWRvckBleGFtcGxlLmNvbSIsInJvbCI6ImFkbWluIiwiaWF0IjoxNzUyNjE0MDkwLCJleHAiOjE3NTI2MTc2OTB9.G0OjnkzBUU-podM0Z-VWQibpn2cM3hPm4ICXs2RaOWo
+
+{
+  "titulo": "Harry Potter y la piedra filosofal",
+  "autor": "J.K. Rowling",
+  "stock": 3,
+  "editorial": "Salamandra",
+  "precio": 6500,
+  "isbn": "9788498385072",
+  "generos": ["Fantasía", "Aventura"]
+}
+
+### 5. Obtener todos los libros
+GET http://localhost:3000/api/libros
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NzZjNGM3MTEzYWVkZWM1NGY3MWJiNyIsImVtYWlsIjoiYWRtaW5pc3RyYWRvckBleGFtcGxlLmNvbSIsInJvbCI6ImFkbWluIiwiaWF0IjoxNzUyNjk2MjAwLCJleHAiOjE3NTI2OTk4MDB9.Z6lnh6yf79dOUmz6R28772WqGF6ex_SvB4q-o20MEuU
+
+### 6. Ruta protegida de perfil (para probar si el token sigue funcionando)
+GET http://localhost:3000/api/usuario/perfil
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NzZjNGM3MTEzYWVkZWM1NGY3MWJiNyIsImVtYWlsIjoiYWRtaW5pc3RyYWRvckBleGFtcGxlLmNvbSIsInJvbCI6ImFkbWluIiwiaWF0IjoxNzUyNjE0MDkwLCJleHAiOjE3NTI2MTc2OTB9.G0OjnkzBUU-podM0Z-VWQibpn2cM3hPm4ICXs2RaOWo
+
+### Ajustar stock de un libro (si o si con token)
+PATCH http://localhost:3000/api/libros/6876bc8cea01af71008c9723/stock
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NzZjNGM3MTEzYWVkZWM1NGY3MWJiNyIsImVtYWlsIjoiYWRtaW5pc3RyYWRvckBleGFtcGxlLmNvbSIsInJvbCI6ImFkbWluIiwiaWF0IjoxNzUyNjk2MjAwLCJleHAiOjE3NTI2OTk4MDB9.Z6lnh6yf79dOUmz6R28772WqGF6ex_SvB4q-o20MEuU
+
+{
+  "cantidad": 1,
+  "vendido": true
+}
+
+### Get del libro para verificar el stock
+GET http://localhost:3000/api/libros/6876bc8cea01af71008c9723
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NzZjNGM3MTEzYWVkZWM1NGY3MWJiNyIsImVtYWlsIjoiYWRtaW5pc3RyYWRvckBleGFtcGxlLmNvbSIsInJvbCI6ImFkbWluIiwiaWF0IjoxNzUyNjk2MjAwLCJleHAiOjE3NTI2OTk4MDB9.Z6lnh6yf79dOUmz6R28772WqGF6ex_SvB4q-o20MEuU

@@ -1,4 +1,6 @@
 import Libro from '../models/libro.model.js';
+import { registrarVenta } from './venta.controllers.js';
+
 
 export async function obtenerLibros(req, res){
     try {
@@ -99,3 +101,46 @@ export async function eliminarLibro(req, res){
     };
 };
 
+export async function ajustarStock(req, res) {
+    const { id } = req.params;
+    const { cantidad, vendido } = req.body;
+
+    try {
+        const libro = await Libro.findById(id); // primero buscamos el libro por ID
+        if(!libro) {
+            return res.status(404).json({
+                error: `Libro con ID ${id} no encontrado`
+            });    
+        }
+
+        if ( vendido && libro.stock < cantidad ) { // si esta vendido y no hay suficiente stock ejecutamos el mensaje de error. vendido es un booleano
+            return res.status(400).json({
+                error: `No hay suficiente stock para vender ${cantidad} unidades del libro con ID ${id}`
+            });
+        } 
+
+        libro.stock += cantidad // ajustamos el stock del libro
+        await libro.save(); // guardamos los cambios en la base de datos
+
+        if (vendido) {
+            await registrarVenta({
+                libroId: id,
+                cantidad,
+                usuarioId: req.user.id
+            });
+        };
+
+        res.json({
+            message: `Stock del libro con ID ${id} repuesto correctamente`,
+            libro
+        });
+
+
+    } catch ( error ) {
+        console.log(`Error al ajustar el stock del libro con ID ${id}:`, error);
+        res.status(500).json({
+            error: `Error al ajustar el stock del libro con ID ${id}`,
+            details: error
+        });
+    }; 
+};

@@ -1,9 +1,12 @@
-import { Usuario } from '../models/usuario.model.js';
-import bcrypt from 'bcrypt';
+import Usuario from '../models/usuario.model.js';
+import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
+
+dotenv.config(); // para acceder a las variables de entorno, en nuestro caso el JWT_SECRET
 
 export async function registrarUsuario(req, res) {
-    const { email, password } = req.body;
+    const { email, password, rol } = req.body;
 
     try {
         // verificar si el usuario ya existe
@@ -18,7 +21,8 @@ export async function registrarUsuario(req, res) {
         const hash = await bcrypt.hash(password, 10);
         const nuevoUsuario = new Usuario({
             email,
-            password: hash
+            password: hash,
+            rol
         });
 
         await nuevoUsuario.save(); // guardamos el nuevo usuario en la base de datos
@@ -54,7 +58,7 @@ export async function loginUsuario(req, res) {
         }
         // generamos un token JWT
         const token = jwt.sign(
-            { id: usuario._id, email: usuario.email },
+            { id: usuario._id, email: usuario.email, rol: usuario.rol },
             process.env.JWT_SECRET,
             { expiresIn: '1h' } // el token expira en 1 hora
         );

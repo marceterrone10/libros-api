@@ -1,4 +1,4 @@
-import Libro from '../api/models/libros.js';
+import Libro from '../api/models/libro.model.js';
 
 export async function seedDatabase() {
 
