@@ -67,3 +67,21 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NzZjNGM3M
 ### Get del libro para verificar el stock
 GET http://localhost:3000/api/libros/6876bc8cea01af71008c9723
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NzZjNGM3MTEzYWVkZWM1NGY3MWJiNyIsImVtYWlsIjoiYWRtaW5pc3RyYWRvckBleGFtcGxlLmNvbSIsInJvbCI6ImFkbWluIiwiaWF0IjoxNzUyNjk2MjAwLCJleHAiOjE3NTI2OTk4MDB9.Z6lnh6yf79dOUmz6R28772WqGF6ex_SvB4q-o20MEuU
+
+### 1. Registrar un nuevo usuario
+POST http://localhost:3000/api/auth/register
+Content-Type: application/json
+
+{
+  "email": "marcezika@example.com",
+  "password": "123456",
+  "rol": "admin"
+}
+### 2. Iniciar sesión y obtener el token
+POST http://localhost:3000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "marcezika@example.com",
+  "password": "123456"
+}

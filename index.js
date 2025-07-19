@@ -6,11 +6,13 @@ import librosRoutes from './src/api/routes/libros.routes.js';
 import { morganMiddleware } from './src/api/middlewares/logger.js';
 import authRoutes from './src/api/routes/auth.routes.js';
 import usuarioRoutes from './src/api/routes/usuario.routes.js';
+import cors from 'cors';
 
 const app = express();
 const PORT = config.port;
 
 app.use(morganMiddleware); // Use morgan middleware for logging
+app.use(cors()); // Enable CORS
 app.use(express.json()); // Parse JSON request bodies
 app.use('/api/libros', librosRoutes); // Use the libros routes
 app.use('/api/auth', authRoutes);
