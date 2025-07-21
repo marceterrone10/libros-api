@@ -12,7 +12,9 @@ const app = express();
 const PORT = config.port;
 
 app.use(morganMiddleware); // Use morgan middleware for logging
-app.use(cors()); // Enable CORS
+app.use(cors({
+  origin: ['http://127.0.0.1:5500', 'http://localhost:5500']
+}));
 app.use(express.json()); // Parse JSON request bodies
 app.use('/api/libros', librosRoutes); // Use the libros routes
 app.use('/api/auth', authRoutes);

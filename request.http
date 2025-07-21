@@ -34,7 +34,7 @@ Content-Type: application/json
 ### 4. Crear libro CON token
 POST http://localhost:3000/api/libros
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NzZjNGM3MTEzYWVkZWM1NGY3MWJiNyIsImVtYWlsIjoiYWRtaW5pc3RyYWRvckBleGFtcGxlLmNvbSIsInJvbCI6ImFkbWluIiwiaWF0IjoxNzUyNjE0MDkwLCJleHAiOjE3NTI2MTc2OTB9.G0OjnkzBUU-podM0Z-VWQibpn2cM3hPm4ICXs2RaOWo
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NzZjNGM3MTEzYWVkZWM1NGY3MWJiNyIsImVtYWlsIjoiYWRtaW5pc3RyYWRvckBleGFtcGxlLmNvbSIsInJvbCI6ImFkbWluIiwiaWF0IjoxNzUzMTA1NDQ2LCJleHAiOjE3NTMxMDkwNDZ9.3Eg3Sohq5UgqWsKL964BaSIE4T6XH5TxcRYiP72K1Rs
 
 {
   "titulo": "Harry Potter y la piedra filosofal",
@@ -48,7 +48,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NzZjNGM3M
 
 ### 5. Obtener todos los libros
 GET http://localhost:3000/api/libros
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NzZjNGM3MTEzYWVkZWM1NGY3MWJiNyIsImVtYWlsIjoiYWRtaW5pc3RyYWRvckBleGFtcGxlLmNvbSIsInJvbCI6ImFkbWluIiwiaWF0IjoxNzUyNjk2MjAwLCJleHAiOjE3NTI2OTk4MDB9.Z6lnh6yf79dOUmz6R28772WqGF6ex_SvB4q-o20MEuU
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NzZjNGM3MTEzYWVkZWM1NGY3MWJiNyIsImVtYWlsIjoiYWRtaW5pc3RyYWRvckBleGFtcGxlLmNvbSIsInJvbCI6ImFkbWluIiwiaWF0IjoxNzUzMTA1NDQ2LCJleHAiOjE3NTMxMDkwNDZ9.3Eg3Sohq5UgqWsKL964BaSIE4T6XH5TxcRYiP72K1Rs
 
 ### 6. Ruta protegida de perfil (para probar si el token sigue funcionando)
 GET http://localhost:3000/api/usuario/perfil
@@ -85,3 +85,7 @@ Content-Type: application/json
   "email": "marcezika@example.com",
   "password": "123456"
 }
+
+### Traer lista de usuarios
+GET http://localhost:3000/api/usuarios
+
